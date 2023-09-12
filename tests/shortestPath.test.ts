@@ -35,7 +35,6 @@ describe('/shortest-path endpoint', () => {
         },
       })
 
-    console.log('this is process env', process.env.GYMBEAM_API_URL, process.env.GYMBEAM_API_KEY)
     expect(res.statusCode).toEqual(200)
   })
 })
