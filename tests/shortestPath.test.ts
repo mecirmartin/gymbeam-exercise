@@ -34,6 +34,8 @@ describe('/shortest-path endpoint', () => {
           z: 0,
         },
       })
+
+    console.log('this is process env', process.env)
     expect(res.statusCode).toEqual(200)
   })
 })
