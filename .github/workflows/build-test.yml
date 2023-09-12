@@ -16,6 +16,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: create env file
+        run: |
+          touch .env
+          echo GYMBEAM_API_URL=${{ secrets.GYMBEAM_API_URL }} >> .env
+          echo GYMBEAM_API_KEY=${{ secrets.GYMBEAM_API_KEY }} >> .env
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
