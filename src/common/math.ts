@@ -1,7 +1,9 @@
 import { Point } from '../../types/point'
 
-export const cartesian = (...a: any[]) =>
-  a.reduce((a, b) => a.flatMap((d: any) => b.map((e: any) => [d, e].flat())))
+export const cartesian = (...a: any[]) => {
+  if (a.length === 0) return []
+  return a.reduce((a, b) => a.flatMap((d: any) => b.map((e: any) => [d, e].flat())))
+}
 
 export const calculateDistance = (point1: Point, point2: Point) => {
   const a = point2.x - point1.x

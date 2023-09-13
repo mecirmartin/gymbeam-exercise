@@ -15,10 +15,17 @@ const getProduct = async (productId: string): Promise<Product[]> => {
   return data
 }
 
-const findShortestPath = (products: Product[][], startingPosition: Point) => {
+const mapShortestPathToPickingOrder = (shortestPath: Product[]) =>
+  shortestPath.map((path) => ({
+    productId: path.productId,
+    positionId: path.positionId,
+  }))
+
+export const findShortestPath = (products: Product[][], startingPosition: Point) => {
+  if (products.length === 0) return undefined
   const allPossibleProductRoutes: Product[][] = cartesian(...products)
   let minDistance = Infinity
-  let shortestPath
+  let shortestPath: Product[]
 
   for (const currentProductRoute of allPossibleProductRoutes) {
     let totalDistance = 0
@@ -35,10 +42,13 @@ const findShortestPath = (products: Product[][], startingPosition: Point) => {
     }
   }
 
-  return { distance: minDistance, pickingOrder: shortestPath }
+  return {
+    distance: minDistance,
+    pickingOrder: mapShortestPathToPickingOrder(shortestPath!),
+  }
 }
 
-export const getAll = async ({ productIDs, startingPosition }: GetShortestPathParams) => {
+export const getShortestPath = async ({ productIDs, startingPosition }: GetShortestPathParams) => {
   const productPromises = productIDs.map(getProduct)
   const products = await Promise.all(productPromises)
   return findShortestPath(products, startingPosition)

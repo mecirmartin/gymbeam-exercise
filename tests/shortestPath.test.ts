@@ -39,6 +39,13 @@ describe('/shortest-path endpoint', () => {
   })
 })
 
+describe('non-existent route', () => {
+  it('Should return 404 when invalid route is specified', async () => {
+    const res = await request(app).get('/xxx')
+    expect(res.statusCode).toEqual(404)
+  })
+})
+
 afterAll(() => {
   server.close()
 })
