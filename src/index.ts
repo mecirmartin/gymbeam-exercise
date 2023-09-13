@@ -7,7 +7,7 @@ import * as middleware from './middleware'
 
 import articlesRouter from './routes/shortestPath'
 
-const PORT = process.env.PORT ?? 3030
+const PORT = process.env.PORT ?? 3000
 const ENV = process.env.NODE_ENV ?? 'production'
 
 const app: Express = express()

@@ -1,8 +1,7 @@
 import { Request, Response } from 'express'
 
-import logger from '../common/logger'
-
 import * as shortestPathService from '../services/shortestPath'
+import logger from '../common/logger'
 
 export const getShortestPath = async (req: Request, res: Response) => {
   try {
